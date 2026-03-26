@@ -1,5 +1,5 @@
 {
-  "name": "react-native-resvg",
+  "name": "@lolistream/react-native-resvg",
   "version": "0.1.0",
   "description": "resvg for React Native",
   "main": "./lib/module/index.js",
