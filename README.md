@@ -12,7 +12,7 @@ npm install @lolistream/react-native-resvg
 ## Usage
 
 ```tsx
-import { Converter } from 'react-native-resvg';
+import { Converter } from '@lolistream/react-native-resvg';
 
 const converter = new Converter(
   undefined, // serifFamily
