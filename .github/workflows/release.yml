@@ -85,12 +85,30 @@ jobs:
       - name: Build iOS native libraries
         run: bun run ubrn build ios --and-generate --release
 
+      - name: List generated files
+        run: |
+          echo "=== ios/ ==="
+          find ios/ -type f 2>/dev/null || true
+          echo "=== cpp/ ==="
+          find cpp/ -type f 2>/dev/null || true
+          echo "=== src/generated/ ==="
+          find src/generated/ -type f 2>/dev/null || true
+          echo "=== src/Native* ==="
+          ls -la src/Native* 2>/dev/null || true
+          echo "=== src/index* ==="
+          ls -la src/index* 2>/dev/null || true
+
       - name: Upload iOS artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ios-build
           path: |
             ios/
+            cpp/
+            src/generated/
+            src/NativeResvg.ts
+            src/index.tsx
+            src/index.web.ts
 
   publish:
     needs: [build-android, build-ios]
