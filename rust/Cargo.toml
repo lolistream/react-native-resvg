@@ -1,0 +1,32 @@
+[package]
+name = "rust"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+resvg = { version = "0.47.0", default-features = false, features = ["text", "raster-images"] }
+svgtypes = "0.16"
+thiserror = "2"
+uniffi = "0.31.0"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+panic = "abort"
+debug = false
+rpath = true
+codegen-units = 1
+overflow-checks = false
+strip = true
+
+[profile.test]
+opt-level = 3
+lto = "fat"
+debug = false
+rpath = true
+codegen-units = 1
+overflow-checks = false
+strip = true
+
+[lib]
+crate-type = ["cdylib", "staticlib", "lib"]
