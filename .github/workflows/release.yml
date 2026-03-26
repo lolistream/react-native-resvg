@@ -23,75 +23,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-android:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Add Android Rust targets
-        run: rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android
-
-      - name: Install cargo-ndk
-        run: cargo install cargo-ndk
-
-      - name: Install dependencies
-        run: bun install
-
-      - name: Build Android native libraries
-        run: bun run ubrn build android --and-generate --release
-
-      - name: Upload Android artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-build
-          path: |
-            android/src/main/jniLibs/
-            android/src/main/java/
-            android/CMakeLists.txt
-            android/cpp-adapter.cpp
-            cpp/
-            src/
-
-  build-ios:
+  release:
     runs-on: macos-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Add iOS Rust targets
-        run: rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios
-
-      - name: Install dependencies
-        run: bun install
-
-      - name: Build iOS native libraries
-        run: bun run ubrn build ios --and-generate --release
-
-      - name: Upload iOS artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: ios-build
-          path: |
-            ios/
-
-  publish:
-    needs: [build-android, build-ios]
-    runs-on: ubuntu-latest
     permissions:
       contents: write
       id-token: write
@@ -112,18 +45,24 @@ jobs:
           node-version-file: .nvmrc
           registry-url: https://registry.npmjs.org/
 
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Add Rust targets
+        run: |
+          rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios
+
+      - name: Install cargo-ndk
+        run: cargo install cargo-ndk
+
       - name: Install dependencies
         run: bun install
 
-      - name: Download Android artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: android-build
+      - name: Build Android
+        run: bun run ubrn build android --and-generate --release
 
-      - name: Download iOS artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: ios-build
+      - name: Build iOS
+        run: bun run ubrn build ios --and-generate --release
 
       - name: Build JS/TS
         run: bun run build

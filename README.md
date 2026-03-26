@@ -6,7 +6,7 @@ Rust implementation is based on [svg2png-wasm](https://github.com/ssssota/svg2pn
 ## Installation
 
 ```sh
-npm install react-native-resvg
+npm install @lolistream/react-native-resvg
 ```
 
 ## Usage

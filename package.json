@@ -18,6 +18,7 @@
     "android",
     "ios",
     "cpp",
+    "LolistreamReactNativeResvgFramework.xcframework",
     "*.podspec",
     "react-native.config.js",
     "!ios/build",
