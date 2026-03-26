@@ -1,0 +1,10 @@
+/Users/runner/work/react-native-resvg/react-native-resvg/rust/target/x86_64-linux-android/release/deps/uniffi_pipeline-f7245c1394d7091c.d: /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/lib.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/node.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/pipeline.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/value.rs
+
+/Users/runner/work/react-native-resvg/react-native-resvg/rust/target/x86_64-linux-android/release/deps/libuniffi_pipeline-f7245c1394d7091c.rlib: /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/lib.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/node.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/pipeline.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/value.rs
+
+/Users/runner/work/react-native-resvg/react-native-resvg/rust/target/x86_64-linux-android/release/deps/libuniffi_pipeline-f7245c1394d7091c.rmeta: /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/lib.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/node.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/pipeline.rs /Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/value.rs
+
+/Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/lib.rs:
+/Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/node.rs:
+/Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/pipeline.rs:
+/Users/runner/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/uniffi_pipeline-0.31.0/src/value.rs:
