@@ -30,10 +30,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -42,10 +40,10 @@ jobs:
         run: rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: bun install
 
       - name: Build Android native libraries
-        run: yarn ubrn build android --and-generate --release
+        run: bun run ubrn build android --and-generate --release
 
       - name: Upload Android artifacts
         uses: actions/upload-artifact@v4
@@ -69,10 +67,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -81,10 +77,10 @@ jobs:
         run: rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: bun install
 
       - name: Build iOS native libraries
-        run: yarn ubrn build ios --and-generate --release
+        run: bun run ubrn build ios --and-generate --release
 
       - name: Upload iOS artifacts
         uses: actions/upload-artifact@v4
@@ -107,6 +103,9 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -114,7 +113,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: bun install
 
       - name: Download Android artifacts
         uses: actions/download-artifact@v4
@@ -127,7 +126,7 @@ jobs:
           name: ios-build
 
       - name: Build JS/TS
-        run: yarn prepare
+        run: bun run prepare
 
       - name: Configure git
         run: |
@@ -136,14 +135,14 @@ jobs:
 
       - name: Release (dry run)
         if: ${{ inputs.dry-run }}
-        run: yarn release-it ${{ inputs.version }} --dry-run --ci
+        run: bunx release-it ${{ inputs.version }} --dry-run --ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Release
         if: ${{ !inputs.dry-run }}
-        run: yarn release-it ${{ inputs.version }} --ci
+        run: bunx release-it ${{ inputs.version }} --ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
