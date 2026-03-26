@@ -72,6 +72,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Commit generated files
+        run: |
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: update generated native bindings"
+
       - name: Release (dry run)
         if: ${{ inputs.dry-run }}
         run: bunx release-it ${{ inputs.version }} --dry-run --ci
