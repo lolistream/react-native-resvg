@@ -126,7 +126,7 @@ jobs:
           name: ios-build
 
       - name: Build JS/TS
-        run: bun run prepare
+        run: bun run build
 
       - name: Configure git
         run: |
