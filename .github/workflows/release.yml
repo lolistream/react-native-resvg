@@ -36,7 +36,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install Rust toolchain
-        uses: dtolnay/rust-action/setup@v1
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Add Android Rust targets
         run: rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android
@@ -75,7 +75,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install Rust toolchain
-        uses: dtolnay/rust-action/setup@v1
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Add iOS Rust targets
         run: rustup target add aarch64-apple-ios aarch64-apple-ios-sim x86_64-apple-ios
